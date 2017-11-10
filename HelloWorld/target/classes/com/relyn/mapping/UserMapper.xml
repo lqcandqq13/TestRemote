@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.relyn.dao.UserDao">
+	<resultMap type="com.relyn.model.User" id="userMap">
+		<result property="id" column="id" />
+		<result property="userPhone" column="userPhone" />
+		<result property="userName" column="userName" />	
+		<result property="count" column="count" />	
+	</resultMap>
+	
+	<select id="getUserByUserPhone" parameterType="java.lang.String"
+		resultMap="userMap">
+		select * from user where userPhone=#{userPhone};
+	</select>
+	
+	<update id="updateUser" 
+		parameterType="com.relyn.model.User">
+		update user set count = #{count} ,userName=#{userName} where userPhone=#{userPhone};
+	</update>   
+	
+	<insert id="insertUser" parameterType="com.relyn.model.User">  
+        insert into user(userName,userPhone,count) values(#{userName},#{userPhone},#{count});  
+    </insert>  
+</mapper>
